@@ -43,6 +43,8 @@ jobs:
       - name: Backend tests
         working-directory: backend
         run: pytest -q
+        env:
+          PYTHONPATH: .
 
       - name: Setup Node
         uses: actions/setup-node@v4
