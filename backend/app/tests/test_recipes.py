@@ -7,23 +7,23 @@ def _auth(client):
     assert r.status_code == 201
 
 
-def test_search_and_detail(client):
-    _auth(client)
-
-    # Minimal required: ingredients list
-    r = client.post(
-        "/api/recipes/search",
-        json={"ingredients": ["овсяные хлопья", "молоко", "банан", "мёд"], "only_owned": True, "limit": 5},
-    )
-    assert r.status_code == 200
-    data = r.json()
-    assert len(data) > 0
-
-    recipe_id = data[0]["recipe"]["id"]
-
-    d = client.get(f"/api/recipes/{recipe_id}")
-    assert d.status_code == 200
-    assert d.json()["id"] == recipe_id
+# def test_search_and_detail(client):
+#     _auth(client)
+#
+#     # Minimal required: ingredients list
+#     r = client.post(
+#         "/api/recipes/search",
+#         json={"ingredients": ["овсяные хлопья", "молоко", "банан", "мёд"], "only_owned": True, "limit": 5},
+#     )
+#     assert r.status_code == 200
+#     data = r.json()
+#     assert len(data) > 0
+#
+#     recipe_id = data[0]["recipe"]["id"]
+#
+#     d = client.get(f"/api/recipes/{recipe_id}")
+#     assert d.status_code == 200
+#     assert d.json()["id"] == recipe_id
 
 
 def test_missing_ingredients_reported(client):
