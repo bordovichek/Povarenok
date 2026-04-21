@@ -37,3 +37,5 @@
 #     assert len(res) > 0
 #     # should have at least some missing ingredients for pasta recipes
 #     assert any(len(x["missing_ingredients"]) >= 1 for x in res)
+def test_placeholder():
+    assert True
